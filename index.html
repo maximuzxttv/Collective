@@ -1084,13 +1084,20 @@
     .att-pct { font-size: 12px; min-width: 40px; }
     .att-bar-bg { width: 50px; }
     .priority-score { font-size: 12px; }
-    /* Hide Priority and Loot Score columns */
-th[data-col="priority"],
-td[data-col="priority"],
-th[data-col="points"],
-td[data-col="points"],
-.priority-score {
+   /* Hide Priority and Loot Score columns */
+.role-body col:nth-child(2),
+.role-body col:nth-child(4),
+.role-body th:nth-child(2),
+.role-body th:nth-child(4),
+.role-body td:nth-child(2),
+.role-body td:nth-child(4) {
   display: none !important;
+  width: 0 !important;
+  min-width: 0 !important;
+  max-width: 0 !important;
+  padding: 0 !important;
+  border: 0 !important;
+  overflow: hidden !important;
 }
     /* Dots smaller gap */
     .raid-dots { gap: 3px; }
