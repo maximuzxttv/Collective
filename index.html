@@ -1084,7 +1084,19 @@
     .att-pct { font-size: 12px; min-width: 40px; }
     .att-bar-bg { width: 50px; }
     .priority-score { font-size: 12px; }
+/* Hide priority scoring / recommendation columns */
+.role-section table colgroup col:nth-child(2),
+.role-section table colgroup col:nth-child(4) {
+  width: 0 !important;
+  display: none !important;
+}
 
+.role-section table thead th:nth-child(2),
+.role-section table thead th:nth-child(4),
+.role-section table tbody td:nth-child(2),
+.role-section table tbody td:nth-child(4) {
+  display: none !important;
+}
     /* Dots smaller gap */
     .raid-dots { gap: 3px; }
     .raid-dot { width: 7px; height: 7px; min-width: 7px; }
