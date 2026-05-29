@@ -1084,6 +1084,14 @@
     .att-pct { font-size: 12px; min-width: 40px; }
     .att-bar-bg { width: 50px; }
     .priority-score { font-size: 12px; }
+    /* Hide Priority and Loot Score columns */
+th[data-col="priority"],
+td[data-col="priority"],
+th[data-col="points"],
+td[data-col="points"],
+.priority-score {
+  display: none !important;
+}
    /* Hide priority scoring / recommendation columns */
 .role-section table colgroup col:nth-child(2),
 .role-section table colgroup col:nth-child(4) {
