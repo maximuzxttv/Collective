@@ -8507,5 +8507,67 @@ function onItemChange() {
 }
 
 </script>
+  <script>
+/* Permanently hide Priority and Loot Score columns */
+(function hidePriorityAndLootScoreColumns() {
+  function hideCell(cell) {
+    if (!cell) return;
+    cell.style.setProperty('display', 'none', 'important');
+    cell.style.setProperty('width', '0', 'important');
+    cell.style.setProperty('min-width', '0', 'important');
+    cell.style.setProperty('max-width', '0', 'important');
+    cell.style.setProperty('padding', '0', 'important');
+    cell.style.setProperty('border', '0', 'important');
+    cell.style.setProperty('overflow', 'hidden', 'important');
+  }
+
+  function hideColumns() {
+    document.querySelectorAll('table').forEach((table) => {
+      const possibleHeaderRows = table.querySelectorAll('thead tr, tr:first-child');
+
+      possibleHeaderRows.forEach((row) => {
+        Array.from(row.children).forEach((cell, columnIndex) => {
+          const text = cell.textContent.replace(/\s+/g, ' ').trim().toUpperCase();
+
+          if (text.includes('PRIORITY') || text.includes('LOOT SCORE')) {
+            table.querySelectorAll('tr').forEach((tr) => {
+              hideCell(tr.children[columnIndex]);
+            });
+
+            const col = table.querySelector(`colgroup col:nth-child(${columnIndex + 1})`);
+            hideCell(col);
+          }
+        });
+      });
+    });
+  }
+
+  let scheduled = false;
+
+  function scheduleHide() {
+    if (scheduled) return;
+
+    scheduled = true;
+
+    requestAnimationFrame(() => {
+      scheduled = false;
+      hideColumns();
+    });
+  }
+
+  document.addEventListener('DOMContentLoaded', () => {
+    hideColumns();
+
+    const observer = new MutationObserver(scheduleHide);
+
+    observer.observe(document.body, {
+      childList: true,
+      subtree: true
+    });
+  });
+
+  hideColumns();
+})();
+</script>
 </body>
 </html>
